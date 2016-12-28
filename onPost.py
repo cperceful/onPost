@@ -9,7 +9,9 @@ worksheet = workbook.sheet_by_index(0);
 
 #create a new, empty file
 newWorkbook = xlwt.Workbook();
-newSheet = newWorkbook.add_sheet('Sheet 1')
+newSheet = newWorkbook.add_sheet('Sheet 1');
+
+newSheet.col(0).width = 15000;
 
 
 
