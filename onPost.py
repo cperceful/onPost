@@ -22,7 +22,7 @@ def writeOn(oldSheet, newSheet):
 def writeMid(oldSheet, newSheet):
     counter = 1; #start at 1, first row will contain column names
     for i in range(oldSheet.nrows):
-        if (oldSheet.cell(i, 10) < oldSheet.cell(i, 12) and (oldSheet.cell(i, 8) < oldSheet.cell(i, 10))):
+        if (oldSheet.cell(i, 10).value < oldSheet.cell(i, 12).value and (oldSheet.cell(i, 8).value < oldSheet.cell(i, 10).value)):
             newSheet.write(counter, 0, str(oldSheet.cell(i, 0).value) + " " + str(oldSheet.cell(i, 2).value)); #writes product name
             newSheet.write(counter, 1, str(oldSheet.cell(i, 10).value)); #writes January price
             newSheet.write(counter, 2, str(oldSheet.cell(i, 12).value)); #writes February price
