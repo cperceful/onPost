@@ -9,11 +9,14 @@ def writeOn(oldSheet, newSheet):
     counter = 1; #start at 1, first row will contain column names
     for i in range(oldSheet.nrows):
 
+        if oldSheet.cell(i, 0).value:
+            productName = str(oldSheet.cell(i, 0).value)
+
         if (oldSheet.cell(i, 2).value == '1L'):
             continue; #skip 1L sizes
         elif (oldSheet.cell(i, 8).value < oldSheet.cell(i, 10).value and oldSheet.cell(i, 8).value == oldSheet.cell(i, 12).value): #used to be >=, doesn't matter for end of month, only regular can buy list
             #print(worksheet.cell(i, 1)); #test printing of relevant data
-            newSheet.write(counter, 0, str(oldSheet.cell(i, 0).value) + " " + str(oldSheet.cell(i, 2).value)); #writes product name and size
+            newSheet.write(counter, 0, productName + " " + str(oldSheet.cell(i, 2).value)); #writes product name and size
             newSheet.write(counter, 1, str(oldSheet.cell(i, 8).value)); #writes January price
             newSheet.write(counter, 2, str(oldSheet.cell(i, 10).value)); #writes February price
             counter += 1;
@@ -23,10 +26,14 @@ def writeOn(oldSheet, newSheet):
 def writeTwoMonths(oldSheet, newSheet):
     counter = 1;
     for i in range(oldSheet.nrows):
+
+        if oldSheet.cell(i, 0).value:
+            productName = str(oldSheet.cell(i, 0).value);
+
         if (oldSheet.cell(i, 2).value == '1L'):
             continue; #skip 1L sizes
         elif (oldSheet.cell(i, 8).value < oldSheet.cell(i, 10).value and oldSheet.cell(i, 10).value == oldSheet.cell(i, 12).value):
-            newSheet.write(counter, 0, str(oldSheet.cell(i, 0).value) + " " + str(oldSheet.cell(i, 2).value)); #product name and size
+            newSheet.write(counter, 0, productName + " " + str(oldSheet.cell(i, 2).value)); #product name and size
             newSheet.write(counter, 1, str(oldSheet.cell(i, 8).value)); #write Jan price
             newSheet.write(counter, 2, str(oldSheet.cell(i, 10).value)); #write Feb price
             newSheet.write(counter, 3, str(oldSheet.cell(i, 12).value)); #write Mar price
@@ -36,10 +43,14 @@ def writeTwoMonths(oldSheet, newSheet):
 def writeMid(oldSheet, newSheet):
     counter = 1; #start at 1, first row will contain column names
     for i in range(oldSheet.nrows):
+
+        if oldSheet.cell(i, 0).value:
+            productName = str(oldSheet.cell(i, 0).value)
+
         if (oldSheet.cell(i, 2).value == '1L'):
             continue;
         elif (oldSheet.cell(i, 8).value < oldSheet.cell(i, 10).value and (oldSheet.cell(i, 12).value < oldSheet.cell(i, 8).value)):
-            newSheet.write(counter, 0, str(oldSheet.cell(i, 0).value) + " " + str(oldSheet.cell(i, 2).value)); #writes product name
+            newSheet.write(counter, 0, productName + " " + str(oldSheet.cell(i, 2).value)); #writes product name
             newSheet.write(counter, 1, str(oldSheet.cell(i, 8).value)); #writes January price
             newSheet.write(counter, 2, str(oldSheet.cell(i, 10).value)); #writes February price
             newSheet.write(counter, 3, str(oldSheet.cell(i, 12).value));
@@ -47,11 +58,16 @@ def writeMid(oldSheet, newSheet):
 
 def writeFlat(oldSheet, newSheet):
     counter = 1;
+    productName = "";
     for i in range(oldSheet.nrows):
+
+        if oldSheet.cell(i, 0).value:
+            productName = str(oldSheet.cell(i, 0).value);
+
         if (oldSheet.cell(i, 2).value == '1L'):
             continue;
         elif (oldSheet.cell(i, 8).value == oldSheet.cell(i, 10).value and oldSheet.cell(i, 10).value == oldSheet.cell(i, 12).value):
-            newSheet.write(counter, 0, str(oldSheet.cell(i, 0).value) + " " + str(oldSheet.cell(i, 2).value)); #writes product name
+            newSheet.write(counter, 0, productName + " " + str(oldSheet.cell(i, 2).value)); #writes product name
             newSheet.write(counter, 1, str(oldSheet.cell(i, 8).value)); #write Jan price
             newSheet.write(counter, 2, str(oldSheet.cell(i, 10).value)); #write Feb price
             newSheet.write(counter, 3, str(oldSheet.cell(i, 12).value)); #write March
